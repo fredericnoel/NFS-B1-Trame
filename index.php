@@ -1,28 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>La liste des caisses à Greugreu</title>
+    <link href="./assets/css/style.css" rel="stylesheet" />
+</head>
+<body>
 <?php
 
-if ($toto = fopen('./files/test.php', 'w+')) {
-    if (is_writable('./files/test.php')) {
-        $msg = '<?php' . PHP_EOL;
-        $msg .= '$html = "<!DOCTYPE html>";' . PHP_EOL;;
-        $msg .= '$html .= "<html>";' . PHP_EOL;
-        $msg .= '$html .= "<head>";' . PHP_EOL;
-        $msg .= '$html .= "<meta charset=\"UTF-8\">";' . PHP_EOL;
-        $msg .= '$html .= "<title>CGT !!!</title>";' . PHP_EOL;
-        $msg .= '$html .= "</head>";' . PHP_EOL;
-        $msg .= '$html .= "<body>";' . PHP_EOL;
-        $msg .= '$html .= "<h1>Le titre ici !</h1>";' . PHP_EOL;
-        $msg .= '$html .= "<p>Lorem ipsum dolor amet vexillologist portland lomo chicharrones swag la croix unicorn hoodie, deep v raw denim 8-bit bespoke franzen cronut locavore. Vinyl single-origin coffee occupy umami tofu. Fixie art party mixtape artisan authentic fashion axe.</p>";' . PHP_EOL;
-        $msg .= '$html .= "</body>";' . PHP_EOL;
-        $msg .= '$html .= "</html>";' . PHP_EOL;
-        $msg .= 'echo $html;';
-        fwrite($toto, $msg);
+$fichier = file_get_contents('./files/cars.json');
+$json = json_decode($fichier, true);
+
+$tableau = "<table>";
+$tableau .= "<caption>Liste des caisses à Greugreu</caption>";
+$tableau .= "<thead>";
+$tableau .= "<tr>";
+
+
+$tableau .= "<td>";
+
+$tableau .= "</td>";
+
+
+
+$tableau .= "</tr>";
+$tableau .= "</thead>";
+$tableau .= "<tbody>";
+
+foreach ($json as $value) {
+    $tableau .= "<tr>";
+    foreach ($value as $valeurs) {
+        $tableau .= "<td>";
+        $tableau .= $valeurs;
+        $tableau .= "</td>";
     }
-    else {
-        echo "Morche po";
-    }
+    $tableau .= "</tr>";
 }
 
-else {
-    echo "File does exist";
-}
-fclose($toto);
+$tableau .= "</tbody>";
+$tableau .= "</table>";
+
+echo $tableau;
+?>
+</body>
+</html>
+
+
